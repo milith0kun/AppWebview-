@@ -1,0 +1,13 @@
+# Directorio para sonidos de notificación personalizados
+#
+# Puedes agregar archivos de sonido aquí:
+# - Para Android: archivos .mp3, .wav, .ogg
+# - Para iOS: archivos .aiff, .caf, .wav
+#
+# Los sonidos deben ser cortos (2-5 segundos recomendado)
+# y tener nombres que coincidan con los definidos en constants.dart
+#
+# Ejemplo:
+# - alert1.mp3 / alert1.aiff
+# - alert2.mp3 / alert2.aiff
+# - alert3.mp3 / alert3.aiff
