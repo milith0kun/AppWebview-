@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../models/server_config.dart';
 import '../services/storage_service.dart';
@@ -249,13 +250,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 trailing: IconButton(
                   icon: const Icon(Icons.copy),
-                  onPressed: () {
-                    // Aquí puedes copiar el token al portapapeles
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Token copiado (funcionalidad pendiente)'),
-                      ),
-                    );
+                  onPressed: () async {
+                    // Copiar el token al portapapeles
+                    await Clipboard.setData(ClipboardData(text: _fcmToken!));
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Token FCM copiado al portapapeles'),
+                          duration: Duration(seconds: 2),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
