@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 import 'services/storage_service.dart';
-import 'services/firebase_service.dart';
-import 'services/notification_service.dart';
+// import 'services/firebase_service.dart'; // Comentado hasta configurar Firebase
+// import 'services/notification_service.dart'; // Comentado hasta configurar Firebase
 import 'screens/server_selection_screen.dart';
 import 'screens/home_screen.dart';
 
@@ -27,21 +27,43 @@ void main() async {
 /// Inicializar todos los servicios necesarios
 Future<void> _initializeServices() async {
   try {
-    // Inicializar Storage Service
+    // Inicializar Storage Service (requerido)
     await StorageService.getInstance();
+    debugPrint('✓ Storage Service inicializado');
 
     // Firebase y notificaciones solo en plataformas móviles
+    // NOTA: Firebase está temporalmente deshabilitado hasta configurar un proyecto real
+    // Para habilitar Firebase:
+    // 1. Crear proyecto en Firebase Console
+    // 2. Descargar google-services.json actualizado
+    // 3. Descomentar el código de inicialización de Firebase
+    
     if (!kIsWeb) {
-      // Inicializar Firebase Service
-      await FirebaseService.getInstance();
+      debugPrint('⚠ Firebase deshabilitado - requiere configuración');
+      debugPrint('La app funcionará sin notificaciones push');
+      
+      // DESCOMENTAR CUANDO FIREBASE ESTÉ CONFIGURADO:
+      /*
+      try {
+        await FirebaseService.getInstance();
+        debugPrint('✓ Firebase Service inicializado');
+      } catch (e) {
+        debugPrint('⚠ Firebase no disponible: $e');
+      }
 
-      // Inicializar Notification Service
-      await NotificationService.getInstance();
+      try {
+        await NotificationService.getInstance();
+        debugPrint('✓ Notification Service inicializado');
+      } catch (e) {
+        debugPrint('⚠ Notification Service no disponible: $e');
+      }
+      */
     } else {
       debugPrint('Firebase y notificaciones deshabilitadas en plataforma web');
     }
   } catch (e) {
-    debugPrint('Error al inicializar servicios: $e');
+    debugPrint('❌ Error crítico al inicializar servicios: $e');
+    // No relanzar la excepción - permitir que la app continúe
   }
 }
 

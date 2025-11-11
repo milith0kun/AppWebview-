@@ -1,4 +1,4 @@
-package com.example.flutter_application_4
+package com.gpstracking.app
 
 import io.flutter.embedding.android.FlutterActivity
 

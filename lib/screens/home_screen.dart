@@ -208,11 +208,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  'Esta aplicación está optimizada para dispositivos móviles (Android/iOS).',
-                  style: TextStyle(fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
+                const SizedBox(height: 16),
+                  const Text(
+                    'Esta aplicación está optimizada para dispositivos móviles (Android/iOS).',
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
                 const SizedBox(height: 8),
                 Text(
                   'Servidor configurado: ${_currentServer!.name}',
